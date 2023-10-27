@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_meals_app/models/models.dart';
+import 'package:flutter_meals_app/models/category.dart';
+import 'package:flutter_meals_app/models/meal.dart';
 
-const availableCategories = [
+const List<Category> availableCategories = [
   Category(
     id: 'c1',
     title: 'Italian',
@@ -54,7 +55,7 @@ const availableCategories = [
   ),
 ];
 
-const dummyMeals = [
+const List<Meal> dummyMeals = [
   Meal(
     id: 'm1',
     categories: [

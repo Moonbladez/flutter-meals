@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_meals_app/models/models.dart';
+import 'package:flutter_meals_app/models/meal.dart';
 
 class MealListItem extends StatelessWidget {
   const MealListItem({super.key, required this.meal});
