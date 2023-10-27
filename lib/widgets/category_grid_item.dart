@@ -9,14 +9,16 @@ class CategoryGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final BorderRadius kBorderRadius = BorderRadius.circular(12);
     return InkWell(
       onTap: () {},
-      borderRadius: BorderRadius.circular(12),
+      splashColor: kThemeData.primaryContainer,
+      borderRadius: kBorderRadius,
       child: Card(
         child: Container(
           padding: const EdgeInsets.all(6),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: kBorderRadius,
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,

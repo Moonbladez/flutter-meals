@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_meals_app/screens/categories_screen.dart';
+import 'package:flutter_meals_app/data/dummy_data.dart';
+import 'package:flutter_meals_app/screens/meals_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -22,12 +23,15 @@ class MyApp extends StatelessWidget {
           backgroundColor: kThemeData.primary,
           foregroundColor: kThemeData.onPrimary,
         ),
-        textTheme: GoogleFonts.latoTextTheme(
+        textTheme: GoogleFonts.robotoTextTheme(
           Theme.of(context).textTheme,
         ),
         useMaterial3: true,
       ),
-      home: const CategoriesScreen(),
+      home: const MealsScreen(
+        title: 'test',
+        meal: dummyMeals,
+      ),
     );
   }
 }
