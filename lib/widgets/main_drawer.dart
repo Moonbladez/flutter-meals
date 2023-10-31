@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meals_app/widgets/widgets.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key, required this.onSelectScreen});
@@ -46,30 +47,17 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          //TODO: MOVE LIST TILES TO SINGLE WIDGET
-          ListTile(
-            leading: const Icon(Icons.restaurant),
-            splashColor: Theme.of(context).colorScheme.primaryContainer,
-            title: Text(
-              "Meals",
-              style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
-            ),
-            onTap: () {
+          DrawerListItem(
+            icon: Icons.restaurant,
+            text: "Meals",
+            onSelect: () {
               onSelectScreen("meals");
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            splashColor: Theme.of(context).colorScheme.primaryContainer,
-            title: Text(
-              "Filters",
-              style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
-            ),
-            onTap: () {
+          DrawerListItem(
+            icon: Icons.settings,
+            text: "Filters",
+            onSelect: () {
               onSelectScreen("filters");
             },
           ),
