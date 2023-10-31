@@ -46,6 +46,7 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
+          //TODO: MOVE LIST TILES TO SINGLE WIDGET
           ListTile(
             leading: const Icon(Icons.restaurant),
             splashColor: Theme.of(context).colorScheme.primaryContainer,
