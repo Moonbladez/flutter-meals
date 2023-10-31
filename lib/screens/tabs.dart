@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meals_app/data/dummy_data.dart';
 import 'package:flutter_meals_app/models/meal.dart';
-import 'package:flutter_meals_app/screens/categories_screen.dart';
-import 'package:flutter_meals_app/screens/filters_screen.dart';
-import 'package:flutter_meals_app/screens/meals_screen.dart';
-import 'package:flutter_meals_app/widgets/main_drawer.dart';
+import 'package:flutter_meals_app/screens/screens.dart';
+import 'package:flutter_meals_app/widgets/widgets.dart';
 
 const kIntialFilters = {
   FilterOptions.vegan: false,
