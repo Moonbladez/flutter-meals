@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_meals_app/main.dart';
 import 'package:flutter_meals_app/models/models.dart';
 import 'package:flutter_meals_app/screens/screens.dart';
 import 'package:flutter_meals_app/widgets/widgets.dart';
@@ -39,24 +38,7 @@ class MealsScreen extends StatelessWidget {
     );
 
     if (meal.isEmpty) {
-      content = Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.warning,
-              size: 50,
-              color: kThemeData.error,
-            ),
-            Text(
-              'No meals found, please add some!',
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
-            ),
-          ],
-        ),
-      );
+      content = const EmptyCategories();
     }
 
     if (title == null) {
