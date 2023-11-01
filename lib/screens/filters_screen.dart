@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meals_app/providers/providers.dart';
 import 'package:flutter_meals_app/widgets/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-enum FilterOptions {
-  glutenFree,
-  lactoseFree,
-  vegetarian,
-  vegan,
-}
-
-class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({super.key, required this.currentFilters});
-
-  final Map<FilterOptions, bool> currentFilters;
+class FiltersScreen extends ConsumerStatefulWidget {
+  const FiltersScreen({super.key});
 
   @override
-  State<FiltersScreen> createState() => _FiltersScreenState();
+  ConsumerState<FiltersScreen> createState() => _FiltersScreenState();
 }
 
-class _FiltersScreenState extends State<FiltersScreen> {
+class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   bool _isGlutenFree = false;
   bool _isLactoseFree = false;
   bool _isVegetarian = false;
@@ -26,10 +19,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
   @override
   void initState() {
     super.initState();
-    _isGlutenFree = widget.currentFilters[FilterOptions.glutenFree]!;
-    _isLactoseFree = widget.currentFilters[FilterOptions.lactoseFree]!;
-    _isVegetarian = widget.currentFilters[FilterOptions.vegetarian]!;
-    _isVegan = widget.currentFilters[FilterOptions.vegan]!;
+    final activeFilters = ref.read(filtersProvider);
+    _isGlutenFree = activeFilters[FilterOptions.glutenFree]!;
+    _isLactoseFree = activeFilters[FilterOptions.lactoseFree]!;
+    _isVegetarian = activeFilters[FilterOptions.vegetarian]!;
+    _isVegan = activeFilters[FilterOptions.vegan]!;
   }
 
   @override
@@ -40,7 +34,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
       ),
       body: WillPopScope(
         onWillPop: () async {
-          Navigator.of(context).pop(
+          ref.read(filtersProvider.notifier).setFilters(
             {
               FilterOptions.glutenFree: _isGlutenFree,
               FilterOptions.lactoseFree: _isLactoseFree,
@@ -48,7 +42,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
               FilterOptions.vegan: _isVegan,
             },
           );
-          return false;
+
+          return true;
         },
         child: Column(
           children: [
