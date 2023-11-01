@@ -25,6 +25,14 @@ class _CategoriesScreenState extends State<CategoriesScreen>
       lowerBound: 0,
       upperBound: 1,
     );
+
+    _animateController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animateController.dispose();
+    super.dispose();
   }
 
   void _selectCategory(BuildContext context, Category category) {
@@ -44,8 +52,20 @@ class _CategoriesScreenState extends State<CategoriesScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GridView.builder(
+    return AnimatedBuilder(
+      animation: _animateController,
+      builder: (BuildContext context, Widget? child) => SlideTransition(
+        position: _animateController.drive(
+          Tween<Offset>(
+            begin: const Offset(0, 0.4),
+            end: const Offset(0, 0),
+          ).chain(
+            CurveTween(curve: Curves.easeIn),
+          ),
+        ),
+        child: child,
+      ),
+      child: GridView.builder(
         padding: const EdgeInsets.all(12),
         itemCount: availableCategories.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
