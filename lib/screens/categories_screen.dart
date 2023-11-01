@@ -21,7 +21,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
     super.initState();
     _animateController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 600),
       lowerBound: 0,
       upperBound: 1,
     );
@@ -55,12 +55,13 @@ class _CategoriesScreenState extends State<CategoriesScreen>
     return AnimatedBuilder(
       animation: _animateController,
       builder: (BuildContext context, Widget? child) => SlideTransition(
-        position: _animateController.drive(
-          Tween<Offset>(
-            begin: const Offset(0, 0.4),
-            end: const Offset(0, 0),
-          ).chain(
-            CurveTween(curve: Curves.easeIn),
+        position: Tween<Offset>(
+          begin: const Offset(0, 0.3),
+          end: const Offset(0, 0),
+        ).animate(
+          CurvedAnimation(
+            parent: _animateController,
+            curve: Curves.decelerate,
           ),
         ),
         child: child,
